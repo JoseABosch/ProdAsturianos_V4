@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+    <head>
+        <title>
+            {% block titulo %}Productos asturianos V3{% endblock %}
+        </title>
+        <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="/public/css/estilos.css"/>
+    </head>
+    <body>
+        <header>
+            {% block menu %}
+                <nav class="alert alert-info">
+                    <a class="btn btn-link" href="/">Inicio</a>
+                    <a class="btn btn-link" href="/auth/login">Administración</a>
+                </nav>
+            {% endblock %}
+        </header>
+        <div class="container">
+            {% block contenido %}{% endblock %}
+        </div>
+    </body>
+</html>

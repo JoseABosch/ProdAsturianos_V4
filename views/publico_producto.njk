@@ -1,0 +1,61 @@
+{% extends "publico_base.njk" %}
+{% block titulo %}Detalle Producto{% endblock %}
+{% block contenido %}
+
+    <div class="container-fluid">
+        <div class="panel panel-default row">
+            <div class="panel-heading col-12 col-md-5">
+                {% if producto.imagen !== "" %}
+                    <img class="img-thumbnail" src="/public/uploads/{{producto.imagen}}" alt="Imagen del producto.">
+                {% endif %}
+            </div>
+            <div class="panel-body col-12 col-md-7">
+                <h2>{{producto.nombre}}</h2>
+                <p>
+                    {{ producto.precio }}
+                    €
+                </p>
+                <p>
+                    {{ producto.descripcion }}
+                </p>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-12">
+                <p>
+                    <strong>
+                        <em>Comentarios</em>
+                    </strong>
+                </p>
+            </div>
+            <div class="col-12 col-sm-6">
+                {% for comentario in producto.comentarios %}
+                    <h3>
+                        <img class="imagenUsuario" src="/public/uploads/user.jpg" alt="Logo del usuario.">
+                        {{ comentario.nombreUsuario }}
+                    </h3>
+                    <p class="comentarioComent">
+                        <em>
+                            {{ comentario.comentario }}
+                        </em>
+                    </p>
+                {% endfor %}
+            </div>
+            <div class="col-12 col-sm-6 nuevoComentario">
+                <h2>Añadir comentario</h2>
+                <form action="/comentarios/{{producto.id}}" method="post">
+                    <div class="form-group">
+                        <label for="nombreUsuario">Nombre de usuario:</label>
+                        <input type="text" class="form-control" name="nombreUsuario" placeholder="Nombre del usuario" required="required"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="comentario">Comentario:</label>
+                        <input type="text" class="form-control" name="comentario" placeholder="Comentario" required="required"/>
+                    </div>
+                    <button type="submit" class="btn btn-secondary">Enviar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

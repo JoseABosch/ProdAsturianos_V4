@@ -1,0 +1,33 @@
+{% extends "admin_base.njk" %}
+
+{% block titulo %}
+    Comentarios | Listado
+{% endblock %}
+
+{% block contenido %}
+    <h1>Listado de comentarios</h1>
+
+    <div class="col-12 col-sm-6" style="margin-top: 15px;">
+        {% for comentario in producto.comentarios %}
+            <div class="row">
+                <div class="col-12 col-sm-6">
+                    <h3>
+                        {{ comentario.nombreUsuario }}
+                    </h3>
+                    <p class="comentarioComent">
+                        <em>
+                            {{ comentario.comentario }}
+                        </em>
+                    </p>
+
+                </div>
+                <div class="col-12 col-sm-6" style="margin-top: 18px;">
+                    <form style="display:inline" action="/admin/comentarios/{{ producto.id }}/{{ comentario.id }}" method="post">
+                        <input type="hidden" name="_method" value="delete"/>
+                        <button type="submit" class="btn btn-danger">Borrar</button>
+                    </form>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

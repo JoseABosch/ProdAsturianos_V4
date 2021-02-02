@@ -1,0 +1,10 @@
+<div class="alert alert-info">
+    <a class="btn btn-link" href="/admin">Inicio</a>
+    <a class="btn btn-link" href="/admin/nuevo">Nuevo producto</a>
+    
+    {% if (session and session.login) %}
+        <a class="btn btn-link" href="/auth/logout">Logout</a>
+    {% else %}
+        <a class="btn btn-link" href="/login">Login</a>
+    {% endif %}
+</div>
